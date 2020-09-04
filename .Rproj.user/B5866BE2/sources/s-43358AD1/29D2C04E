@@ -1,0 +1,25 @@
+{
+    "id": "29D2C04E",
+    "path": "~/Git_Projects/example_project_nhs_nottingham/make_model.R",
+    "project_path": "make_model.R",
+    "type": "r_source",
+    "hash": "1701842879",
+    "contents": "",
+    "dirty": false,
+    "created": 1599216708686.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "8,1",
+        "scrollLine": "4",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1599216724,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1599216724276,
+    "read_only": false,
+    "read_only_alternatives": []
+}
