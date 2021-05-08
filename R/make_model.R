@@ -5,12 +5,9 @@
 # Library -----------------------------------------------------------------
 library(here) # to run from different working directory
 
-# Source - OFF ------------------------------------------------------------------
-# source(here("set_project.R"))
-# source(here("set_functions.R"))
 
 # LOAD --------------------------------------------------------------------
-all_data <- read_rds(here("data", "synthetic_data.rds"))
+all_data <- read_rds(here("input", "synthetic_data.rds"))
 
 # Plotting function -------------------------------------------------------
 ggplot_lm <- function(data, outcome, explanatory, y_lab = NULL,
@@ -145,7 +142,7 @@ het2_cor_data <- all_data %>%
   rename_all(list(~str_replace_all(., "_", " "))) %>%
   polycor::hetcor()
 
-CairoPNG(file = here("all_plots", "correlation_categorical.png"),
+CairoPNG(file = here("output", "all_plots", "correlation_categorical.png"),
     height = 1000,
     width = 1400)
 ggcorrplot::ggcorrplot(ifelse(het2_cor_data$correlations >= 0.20 | het2_cor_data$correlations <= -0.20, het2_cor_data$correlations, 0),
@@ -223,7 +220,7 @@ ggpost <- ggplot(data = post, aes(x = Levels, y = Total)) +
   default_labs(title_lab = "After the levels were merged")
 
 
-CairoPNG(here("all_plots", "pre_post_levels_merged.png"), width = 1400, height = 900)
+CairoPNG(here("output","all_plots", "pre_post_levels_merged.png"), width = 1400, height = 900)
 ggpre / ggpost
 dev.off()
 
@@ -278,7 +275,7 @@ patchwork_label_y <- wrap_elements(panel = grid::textGrob("UEQ: Attractiveness",
 patchwork_plots <- patchwork_label_y | (gg1 / gg2 / gg3 / gg4) | (gg5 / gg6 / gg7 / gg8)
 
 # Save the graph
-CairoPNG(filename = here("all_plots", "predictors_UEQ_Attractiveness_vars.png"), width = 700, height = 750)
+CairoPNG(filename = here("output", "all_plots", "predictors_UEQ_Attractiveness_vars.png"), width = 700, height = 750)
 patchwork_plots + 
   plot_annotation(
     title = "Attractiveness (outcome) ~ explanatory variables",
@@ -399,13 +396,13 @@ dev.off()
 # DECISION: USE MODEL 2
 
 # Report this:
-CairoPNG(filename = here("all_plots", "diagnostic_1_UEQ_Attractiveness.png"), width = 700, height = 600)
+CairoPNG(filename = here("output", "all_plots", "diagnostic_1_UEQ_Attractiveness.png"), width = 700, height = 600)
 autoplot(ueq_att_mod_2, label.repel = 1) +
   theme_minimal()
 dev.off()
 
 # Report this:
-CairoPNG(filename = here("all_plots", "diagnostic_2_UEQ_Attractiveness.png"), width = 700, height = 600)
+CairoPNG(filename = here("output", "all_plots", "diagnostic_2_UEQ_Attractiveness.png"), width = 700, height = 600)
 influenceIndexPlot(ueq_att_mod_2, id = list(n=3))
 dev.off()
 
@@ -575,7 +572,7 @@ dag_UEQ <- ggplot(UEQ_dag_data, aes(x = x, y = y, xend = xend, yend = yend)) +
   labs(title = "Model 1: User Experience Questionnaire (updated)") +
   theme_dag(base_size = 15, base_family = "Arial")
 
-CairoPNG(filename = here("all_plots", "dag_updated_m1_UEQ.png"), width = 1000, height = 1000)
+CairoPNG(filename = here("output", "all_plots", "dag_updated_m1_UEQ.png"), width = 1000, height = 1000)
 dag_UEQ
 dev.off()
 

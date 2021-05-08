@@ -13,7 +13,7 @@ output:
 knit: (
   function(inputFile, encoding) { 
   
-    file_title <- 'Report - Measuring parental user experience with the NCMP letters'
+    file_title <- 'Report - Measuring experience with the NCMP letters'
     
     rmarkdown::render( 
       input       = inputFile, 
@@ -36,10 +36,10 @@ library(here)
 library(knitr)
 ```
 
-```{r load_scripts, include = FALSE, results = 'hide'}
-source(file = here("set_project.R"), verbose = FALSE)
-source(file = here("set_functions.R"), verbose = FALSE)
-source(file = here("make_model.R"), verbose = FALSE)
+```{r load_scripts_off, include = FALSE, results = 'hide'}
+# source(file = here("R", "set_project.R"), echo = FALSE)
+# source(file = here("R", "set_functions.R"), echo = FALSE)
+# source(file = here("R", "make_model.R"), echo = FALSE)
 ```
 
 ## Introduction
@@ -53,7 +53,7 @@ The focus was on overall experience with the letter as measured across several d
 Conceptually, the user experience model was expected to be affected by the following explanatory variables presented in the DAG (Directed acyclic graph) below. 
 
 ```{r dag, out.width="100%", fig.cap="DAG - UEQ"}
-knitr::include_graphics(here("all_plots/report/dag_updated_m1_UEQ.png"))
+knitr::include_graphics(here("output/all_plots/report/dag_updated_m1_UEQ.png"))
 ```
 
 ## Assessing the correlation structure
@@ -62,14 +62,14 @@ The correlation structure of all variables was assessed as part of constructing 
 To decide which variables, I should exclude from further analyses, I have used the criteria of r ≤ 0.20 or r ≥ -0.20 while not being correlated with more than one outcome variable (y > 1).
 
 ```{r correlation, out.width="100%", fig.cap="Correlation between explanatory and outcome variables"}
-knitr::include_graphics(here("all_plots/report/correlation_categorical.png"))
+knitr::include_graphics(here("output/all_plots/report/correlation_categorical.png"))
 ```
 
 ## Variable coercion and visualisation
 The figure below shows a reduction in the levels for all variables with k > 2. This removed levels that were poorly represented in the sample (such as Underweight category) in exchange for analytical detail. I argue that with only 89 participants this was a necessary step before the analysis itself – for example, levels of UW or Doctoral degree were low and would result in unequal comparisons, therfore, they were collapsed.
 
 ```{r coercion, out.width="100%", fig.cap="Collapsing the levels"}
-knitr::include_graphics(here("all_plots/report/pre_post_levels_merged.png"))
+knitr::include_graphics(here("output/all_plots/report/pre_post_levels_merged.png"))
 ```
 
 ## Findings regarding the UEQ - Attractiveness
@@ -79,7 +79,7 @@ The first outcome variable assessed in the UEQ was attractiveness which measured
 The visual representation below shows plots with the outcome variable (UEQ: Attractiveness) being regressed on each explanatory variable. 
 
 ```{r predictors, out.width="100%", fig.cap="Predictors of the Attractiveness"}
-knitr::include_graphics(here("all_plots/report/predictors_UEQ_Attractiveness_vars.png"))
+knitr::include_graphics(here("output/all_plots/report/predictors_UEQ_Attractiveness_vars.png"))
 ```
 
 
@@ -136,19 +136,19 @@ tidy(model_comparison) %>%
 The AIC and BIC values are expected to be minimised (the lower values are preferable). Figure below shows the visual confirmation to the previous statistics and confirms the model 2 (df = 5) as favourable.
 
 ```{r aic_bic, out.width="100%", fig.cap="AIC/BIC across the models"}
-knitr::include_graphics(here("all_plots/report/aicbic_UEQ_Attractiveness_mod.png"))
+knitr::include_graphics(here("output/all_plots/report/aicbic_UEQ_Attractiveness_mod.png"))
 ```
 
 Once the model was selected number of diagnostics were performed to measure the model (Figure below). Residual plots showed no indication of unusual patterns; however, few outliers were identified in the model.
 
 ```{r diagnostics_1, out.width="100%", fig.cap="Model diagnostics: Normality"}
-knitr::include_graphics(here("all_plots/report/diagnostic_1_UEQ_Attractiveness.png"))
+knitr::include_graphics(here("output/all_plots/report/diagnostic_1_UEQ_Attractiveness.png"))
 ```
 
 Further outlier assessment (figure below) shows several cases as possible outliers, some of which were identified in the residual plots. The outliers were removed.
 
 ```{r diagnostics_2, out.width="100%", fig.cap="Model diagnostics: Outliers"}
-knitr::include_graphics(here("all_plots/report/diagnostic_2_UEQ_Attractiveness.png"))
+knitr::include_graphics(here("output/all_plots/report/diagnostic_2_UEQ_Attractiveness.png"))
 ```
 
 ### The Final model
@@ -177,5 +177,5 @@ glance(ueq_att_final) %>%
 Figure (below) shows the differences in attractiveness scores between the letter versions in the final model (the final model was defined as: *the Attractiveness ~ Child's Weight (category in the letter) + Design Version*). The visualisation indicates that participants favoured the HW (healthy weight) version and somewhat less conclusively the control version of the letter as opposed to the other variables.
 
 ```{r final_model_visual, out.width="100%", fig.cap="Final model plotted in data"}
-knitr::include_graphics(here("all_plots/report/final_vis_UEQ_Attractiveness.png"))
+knitr::include_graphics(here("output/all_plots/report/final_vis_UEQ_Attractiveness.png"))
 ```

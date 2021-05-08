@@ -9,7 +9,7 @@ pkgs_cran <- c("renv", "remotes", "here", "tidyverse", "readxl", "httr",
                "ggsignif", "showtext", "janitor", "gghighlight", "ggcorrplot",
                "patchwork", "flextable", "GPArotation", "broom", "synthpop",
                "viridis", "recipes", "car", "effects", "polycor", "ggtext",
-               "Cairo", "ggfortify", "ggeffects", "conflicted", "ggdag"
+               "Cairo", "ggfortify", "ggeffects", "conflicted", "ggdag", "checkmate"
                # MORE PKGS HERE
                ) # install and load last
 
@@ -118,11 +118,3 @@ color_a <- "#303030"
 
 # Register the palette.
 colorspace::sequential_hcl(n = 5, palette = "palette_gray_mc")
-
-# Directories -------------------------------------------------------------
-# Check if essential directories exist.
-if (!dir.exists(here("all_plots")))
-  stop("Please create directory: `all_plots`")
-
-if (!dir.exists(here("data")))
-  stop("Please create directory: `data`")
